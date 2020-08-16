@@ -1,31 +1,24 @@
-$(function () {
-    $("#burgerSubmit").on("submit", (event) => {
-      event.preventDefault();
-      let newBurger = {
-        burger_name: $("#burgerName").val().trim(),
-      };
-  
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger,
-      }).then(function () {
-        console.log("created new burger");
-        location.reload();
-      });
+var orm = require("../config/orm.js");
+
+var burger = {
+  all: function(cb) {
+    orm.all("burgers", function(res) {
+      cb(res);
     });
-  
-    $(".devourBtn").on("click", function (event) {
-      event.preventDefault();
-      const id = $(this).data("id");
-      let devouredObj = {
-        devoured: true,
-      };
-      $.ajax("/api/burgers/" + id, {
-        type: "PUT",
-        data: devouredObj,
-      }).then(function () {
-        console.log("Changed burger devoured type to true");
-        location.reload();
-      });
-    });
-  });
+  },
+  create: function(name, cb) {
+    orm.create("burgers", [
+      "burger_name", "devoured"
+    ], [
+      name, false
+    ], cb);
+  },
+  update: function(id, cb) {
+    var condition = "id=" + id;
+    orm.update("burgers", {
+      devoured: true
+    }, condition, cb);
+  }
+};
+
+module.exports = burger;
