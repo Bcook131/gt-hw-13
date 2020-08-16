@@ -1,9 +1,12 @@
 {
+  "homepage": "https://Bcook131.github.io/gt-hw-13",
   "name": "node_what_todo",
   "version": "1.0.0",
   "description": "-Node \r -Express \r -MySQL \r -Handlebars \r -Jquery",
   "main": "server.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,5 +17,7 @@
     "express-handlebars": "^3.0.0",
     "mysql": "^2.16.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  }
 }
