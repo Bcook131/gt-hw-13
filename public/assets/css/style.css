@@ -4,11 +4,9 @@ body {
   button {
     margin: 20px;
     background-color: orange !important ;
-    /* padding: 20px; */
   }
   
   #newBurger {
-    /* justify-content: center; */
     padding-right: 400px;
     float: right;
   }
